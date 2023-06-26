@@ -1,45 +1,58 @@
-//
-//  NewlineFilter.swift
-//  
-//
-//  Created by Khan Winter on 1/28/23.
-//
+/* -----------------------------------------------------------
+ * :: :  C  O  S  M  O  :                                   ::
+ * -----------------------------------------------------------
+ * @wabistudios :: cosmos :: realms
+ *
+ * CREDITS.
+ *
+ * T.Furby              @furby-tm       <devs@wabi.foundation>
+ *
+ *         Copyright (C) 2023 Wabi Animation Studios, Ltd. Co.
+ *                                        All Rights Reserved.
+ * -----------------------------------------------------------
+ *  . x x x . o o o . x x x . : : : .    o  x  o    . : : : .
+ * ----------------------------------------------------------- */
 
 import Foundation
 import TextFormation
 import TextStory
 
 /// A newline filter almost entirely similar to `TextFormation`s standard implementation.
-struct NewlineFilter: Filter {
-    private let recognizer: ConsecutiveCharacterRecognizer
-    let providers: WhitespaceProviders
+struct NewlineFilter: Filter
+{
+  private let recognizer: ConsecutiveCharacterRecognizer
+  let providers: WhitespaceProviders
 
-    init(whitespaceProviders: WhitespaceProviders) {
-        self.recognizer = ConsecutiveCharacterRecognizer(matching: "\n")
-        self.providers = whitespaceProviders
+  init(whitespaceProviders: WhitespaceProviders)
+  {
+    recognizer = ConsecutiveCharacterRecognizer(matching: "\n")
+    providers = whitespaceProviders
+  }
+
+  func processMutation(_ mutation: TextStory.TextMutation,
+                       in interface: TextFormation.TextInterface) -> TextFormation.FilterAction
+  {
+    recognizer.processMutation(mutation)
+
+    switch recognizer.state
+    {
+      case .triggered:
+        return filterHandler(mutation, in: interface)
+      case .tracking, .idle:
+        return .none
     }
+  }
 
-    func processMutation(_ mutation: TextStory.TextMutation,
-                         in interface: TextFormation.TextInterface) -> TextFormation.FilterAction {
-        recognizer.processMutation(mutation)
+  private func filterHandler(_ mutation: TextMutation, in interface: TextInterface) -> FilterAction
+  {
+    interface.applyMutation(mutation)
 
-        switch recognizer.state {
-        case .triggered:
-            return filterHandler(mutation, in: interface)
-        case .tracking, .idle:
-            return .none
-        }
-    }
+    let range = NSRange(location: mutation.postApplyRange.max, length: 0)
 
-    private func filterHandler(_ mutation: TextMutation, in interface: TextInterface) -> FilterAction {
-        interface.applyMutation(mutation)
+    let value = providers.leadingWhitespace(range, interface)
 
-        let range = NSRange(location: mutation.postApplyRange.max, length: 0)
+    interface.insertString(value, at: mutation.postApplyRange.max)
 
-        let value = providers.leadingWhitespace(range, interface)
-
-        interface.insertString(value, at: mutation.postApplyRange.max)
-
-        return .discard
-    }
+    return .discard
+  }
 }

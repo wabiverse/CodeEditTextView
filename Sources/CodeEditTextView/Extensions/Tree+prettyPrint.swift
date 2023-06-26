@@ -1,71 +1,102 @@
-//
-//  Tree+prettyPrint.swift
-//  
-//
-//  Created by Khan Winter on 3/16/23.
-//
+/* -----------------------------------------------------------
+ * :: :  C  O  S  M  O  :                                   ::
+ * -----------------------------------------------------------
+ * @wabistudios :: cosmos :: realms
+ *
+ * CREDITS.
+ *
+ * T.Furby              @furby-tm       <devs@wabi.foundation>
+ *
+ *         Copyright (C) 2023 Wabi Animation Studios, Ltd. Co.
+ *                                        All Rights Reserved.
+ * -----------------------------------------------------------
+ *  . x x x . o o o . x x x . : : : .    o  x  o    . : : : .
+ * ----------------------------------------------------------- */
 
 import SwiftTreeSitter
 
 #if DEBUG
-extension Tree {
-    func prettyPrint() {
-        guard let cursor = self.rootNode?.treeCursor else {
-            print("NO ROOT NODE")
-            return
-        }
-        guard cursor.currentNode != nil else {
-            print("NO CURRENT NODE")
-            return
-        }
+  extension Tree
+  {
+    func prettyPrint()
+    {
+      guard let cursor = rootNode?.treeCursor
+      else
+      {
+        print("NO ROOT NODE")
+        return
+      }
+      guard cursor.currentNode != nil
+      else
+      {
+        print("NO CURRENT NODE")
+        return
+      }
 
-        func p(_ cursor: TreeCursor, depth: Int) {
-            guard let node = cursor.currentNode else {
-                return
-            }
-
-            let visible = node.isNamed
-
-            if visible {
-                print(String(repeating: " ", count: depth * 2), terminator: "")
-                if let fieldName = cursor.currentFieldName {
-                    print(fieldName, ": ", separator: "", terminator: "")
-                }
-                print("(", node.nodeType ?? "NONE", " ", node.range, " ", separator: "", terminator: "")
-            }
-
-            if cursor.goToFirstChild() {
-                while true {
-                    if cursor.currentNode != nil && cursor.currentNode!.isNamed {
-                        print("")
-                    }
-
-                    p(cursor, depth: depth + 1)
-
-                    if !cursor.gotoNextSibling() {
-                        break
-                    }
-                }
-
-                if !cursor.gotoParent() {
-                    fatalError("Could not go to parent, this tree may be invalid.")
-                }
-            }
-
-            if visible {
-                print(")", terminator: "")
-            }
+      func p(_ cursor: TreeCursor, depth: Int)
+      {
+        guard let node = cursor.currentNode
+        else
+        {
+          return
         }
 
-        if cursor.currentNode?.childCount == 0 {
-            if !cursor.currentNode!.isNamed {
-                print("{\(cursor.currentNode!.nodeType ?? "NONE")}")
-            } else {
-                print("\"\(cursor.currentNode!.nodeType ?? "NONE")\"")
-            }
-        } else {
-            p(cursor, depth: 1)
+        let visible = node.isNamed
+
+        if visible
+        {
+          print(String(repeating: " ", count: depth * 2), terminator: "")
+          if let fieldName = cursor.currentFieldName
+          {
+            print(fieldName, ": ", separator: "", terminator: "")
+          }
+          print("(", node.nodeType ?? "NONE", " ", node.range, " ", separator: "", terminator: "")
         }
+
+        if cursor.goToFirstChild()
+        {
+          while true
+          {
+            if cursor.currentNode != nil, cursor.currentNode!.isNamed
+            {
+              print("")
+            }
+
+            p(cursor, depth: depth + 1)
+
+            if !cursor.gotoNextSibling()
+            {
+              break
+            }
+          }
+
+          if !cursor.gotoParent()
+          {
+            fatalError("Could not go to parent, this tree may be invalid.")
+          }
+        }
+
+        if visible
+        {
+          print(")", terminator: "")
+        }
+      }
+
+      if cursor.currentNode?.childCount == 0
+      {
+        if !cursor.currentNode!.isNamed
+        {
+          print("{\(cursor.currentNode!.nodeType ?? "NONE")}")
+        }
+        else
+        {
+          print("\"\(cursor.currentNode!.nodeType ?? "NONE")\"")
+        }
+      }
+      else
+      {
+        p(cursor, depth: 1)
+      }
     }
-}
+  }
 #endif
