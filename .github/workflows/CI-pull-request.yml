@@ -1,8 +1,9 @@
 name: CI - Pull Request
-on: 
+on:
+  push:
+    branches: [ "main" ]
   pull_request:
-    branches:
-      - 'main'
+    branches: [ "main" ]
   workflow_dispatch:
 jobs:
   swiftlint:

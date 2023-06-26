@@ -1,6 +1,10 @@
 name: Add new issues to project
 
 on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
   issues:
     types:
       - opened
@@ -14,7 +18,7 @@ jobs:
         with:
           # You can target a repository in a different organization
           # to the issue
-          project-url: https://github.com/orgs/CodeEditApp/projects/3
+          project-url: https://github.com/Wabi-Studios/projects/3
           github-token: ${{ secrets.ADD_TO_PROJECT_PAT }}
           labeled: enhancement, bug
           label-operator: OR
