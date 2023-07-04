@@ -23,8 +23,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Wabi-Studios/STTextView.git",
       "state" : {
-        "revision" : "1231acdf754b9277f2a6dd84d5153dd262fa87a1",
-        "version" : "0.7.2"
+        "revision" : "2145eb650c7d88b2f27a00b350e9a5da8386a855",
+        "version" : "0.7.3"
       }
     },
     {
