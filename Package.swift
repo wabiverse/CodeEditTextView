@@ -14,7 +14,7 @@ let package = Package(
   dependencies: [
     .package(
       url: "https://github.com/Wabi-Studios/STTextView.git",
-      exact: "0.7.4"
+      exact: "0.7.5"
     ),
     .package(
       url: "https://github.com/CodeEditApp/CodeEditLanguages.git",
