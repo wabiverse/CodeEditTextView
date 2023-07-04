@@ -136,7 +136,7 @@ extension STTextViewController
   private func highlightRange(_ range: NSTextRange, scrollToRange: Bool = false)
   {
     guard let bracketPairHighlight,
-          var rectToHighlight = textView.textLayoutManager.textSelectionSegmentFrame(
+          var rectToHighlight = textView.textLayoutManager.textSegmentFrame(
             in: range, type: .highlight
           )
     else
