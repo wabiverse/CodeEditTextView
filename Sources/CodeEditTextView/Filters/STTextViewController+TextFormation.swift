@@ -73,7 +73,7 @@ extension STTextViewController
   /// - Parameters:
   ///   - pairs: The pairs to configure. Eg: `{` and `}`
   ///   - whitespaceProvider: The whitespace providers to use.
-  private func setUpOpenPairFilters(pairs: [(String, String)], whitespaceProvider: WhitespaceProviders)
+  private func setUpOpenPairFilters(pairs: [(String, String)], whitespaceProvider _: WhitespaceProviders)
   {
     for pair in pairs
     {
@@ -86,7 +86,7 @@ extension STTextViewController
   /// - Parameters:
   ///   - whitespaceProvider: The whitespace providers to use.
   ///   - indentationUnit: The unit of indentation to use.
-  private func setUpNewlineTabFilters(whitespaceProvider: WhitespaceProviders, indentOption: IndentOption)
+  private func setUpNewlineTabFilters(whitespaceProvider _: WhitespaceProviders, indentOption: IndentOption)
   {
     let newlineFilter: Filter = NewlineProcessingFilter()
     let tabReplacementFilter: Filter = TabReplacementFilter(indentOption: indentOption)

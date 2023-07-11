@@ -3,10 +3,10 @@
     {
       "identity" : "codeeditlanguages",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/CodeEditApp/CodeEditLanguages.git",
+      "location" : "https://github.com/Wabi-Studios/CodeEditLanguages.git",
       "state" : {
-        "branch" : "main",
-        "revision" : "c2ef8617dd1d1e16a349804379b5dedaaa6ccb7d"
+        "revision" : "8a1f455ec64076682b07271e43861d01cd268c33",
+        "version" : "0.1.17"
       }
     },
     {
@@ -32,8 +32,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/lukepistrol/SwiftLintPlugin",
       "state" : {
-        "branch" : "main",
-        "revision" : "b1090ecd269dddd96bda0df24ca3f1aa78f33578"
+        "revision" : "b1090ecd269dddd96bda0df24ca3f1aa78f33578",
+        "version" : "0.52.4"
       }
     },
     {
@@ -50,8 +50,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/ChimeHQ/TextFormation",
       "state" : {
-        "branch" : "main",
-        "revision" : "158a603054ed5176f18d7c08ba355c0e05cb0586"
+        "revision" : "158a603054ed5176f18d7c08ba355c0e05cb0586",
+        "version" : "0.7.0"
       }
     },
     {
