@@ -18,15 +18,15 @@ let package = Package(
     ),
     .package(
       url: "https://github.com/CodeEditApp/CodeEditLanguages.git",
-      exact: "0.1.16"
+      branch: "main"
     ),
     .package(
       url: "https://github.com/lukepistrol/SwiftLintPlugin",
-      from: "0.2.2"
+      branch: "main"
     ),
     .package(
       url: "https://github.com/ChimeHQ/TextFormation",
-      from: "0.6.7"
+      branch: "main"
     ),
   ],
   targets: [

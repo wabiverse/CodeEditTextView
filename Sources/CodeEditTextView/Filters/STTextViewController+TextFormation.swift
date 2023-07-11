@@ -77,7 +77,7 @@ extension STTextViewController
   {
     for pair in pairs
     {
-      let filter = StandardOpenPairFilter(open: pair.0, close: pair.1, whitespaceProviders: whitespaceProvider)
+      let filter = StandardOpenPairFilter(open: pair.0, close: pair.1)
       textFilters.append(filter)
     }
   }
@@ -88,7 +88,7 @@ extension STTextViewController
   ///   - indentationUnit: The unit of indentation to use.
   private func setUpNewlineTabFilters(whitespaceProvider: WhitespaceProviders, indentOption: IndentOption)
   {
-    let newlineFilter: Filter = NewlineProcessingFilter(whitespaceProviders: whitespaceProvider)
+    let newlineFilter: Filter = NewlineProcessingFilter()
     let tabReplacementFilter: Filter = TabReplacementFilter(indentOption: indentOption)
 
     textFilters.append(contentsOf: [newlineFilter, tabReplacementFilter])

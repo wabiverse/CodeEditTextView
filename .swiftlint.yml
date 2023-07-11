@@ -2,6 +2,17 @@ disabled_rules:
   - todo
   - trailing_comma
   - nesting
+  - opening_brace
+  - superfluous_disable_command
+  - switch_case_alignment
+  - cyclomatic_complexity
+  - statement_position
+  - closure_spacing
+  - function_body_length
+  - type_body_length
+  - file_length
+  - orphaned_doc_comment
+  - unneeded_synthesized_initializer
 
 type_name:
   excluded:

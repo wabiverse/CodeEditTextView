@@ -30,7 +30,8 @@ struct NewlineFilter: Filter
   }
 
   func processMutation(_ mutation: TextStory.TextMutation,
-                       in interface: TextFormation.TextInterface) -> TextFormation.FilterAction
+                       in interface: TextFormation.TextInterface,
+                       with _: TextFormation.WhitespaceProviders) -> TextFormation.FilterAction
   {
     recognizer.processMutation(mutation)
 

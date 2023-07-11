@@ -22,7 +22,9 @@ struct DeleteWhitespaceFilter: Filter
 {
   let indentOption: IndentOption
 
-  func processMutation(_ mutation: TextMutation, in interface: TextInterface) -> FilterAction
+  func processMutation(_ mutation: TextMutation,
+                       in interface: TextInterface,
+                       with _: WhitespaceProviders) -> TextFormation.FilterAction
   {
     guard mutation.string == "", mutation.range.length == 1, indentOption != .tab
     else

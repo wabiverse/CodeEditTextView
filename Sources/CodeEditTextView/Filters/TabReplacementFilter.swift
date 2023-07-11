@@ -23,7 +23,9 @@ struct TabReplacementFilter: Filter
 {
   let indentOption: IndentOption
 
-  func processMutation(_ mutation: TextMutation, in interface: TextInterface) -> FilterAction
+  func processMutation(_ mutation: TextStory.TextMutation,
+                       in interface: TextFormation.TextInterface,
+                       with _: TextFormation.WhitespaceProviders) -> TextFormation.FilterAction
   {
     if mutation.string == "\t", indentOption != .tab, mutation.delta > 0
     {
